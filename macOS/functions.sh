@@ -29,10 +29,11 @@ function installHomebrew {
   brew tap caskroom/cask
 
   brew install cask
+  # brew install mas
 }
 
 function installOptionaCasklApp {
-  read -p "Do you want to install \"$1\"? (y/n) " -n 1 choice
+  read -p "Install \"$1\"? (y/n) " -n 1 choice
   echo 
   case "$choice" in 
     y|Y ) 
@@ -71,7 +72,7 @@ function installZipApp {
 }
 
 function installJDKEnv {
-  read -p "Do you want to install JDK environment? (y/n) " -n 1 choice
+  read -p "Install JDK environment? (y/n) " -n 1 choice
   echo 
   case "$choice" in 
     y|Y ) 
@@ -86,7 +87,7 @@ function installJDKEnv {
 }
 
 function installNodeJSEnv {
-  read -p "Do you want to install Node.js environment? (y/n) " -n 1 choice
+  read -p "Install Node.js environment? (y/n) " -n 1 choice
   echo 
   case "$choice" in 
     y|Y )
@@ -135,10 +136,12 @@ function installApplications {
   installOptionaCasklApp "meo-music"
   installOptionaCasklApp "meocloud"
   installOptionaCasklApp "dropbox"
+  installOptionaCasklApp "onedrive"
   installOptionaCasklApp "franz"
   installOptionaCasklApp "libreoffice"
   installOptionaCasklApp "gimp"
   installOptionaCasklApp "spotify"
+  installOptionaCasklApp "evernote"
 }
 
 function cleanUpInstallationCaches {
