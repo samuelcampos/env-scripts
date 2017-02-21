@@ -1,0 +1,4 @@
+.DS_Store
+
+# Ignore the file with test scripts
+test.sh
