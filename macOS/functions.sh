@@ -19,7 +19,7 @@ function installHomebrew {
       ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
       echo "Homebrew is already installed!"
-      brew update && brew doctor && brew doctor
+      brew update && brew doctor && brew upgrade
   fi
 
   # Install Homebrew basic applications
@@ -29,21 +29,13 @@ function installHomebrew {
   brew tap caskroom/cask
 
   brew install cask
-  # brew install mas
+  brew install mas
 }
 
-function installOptionaCasklApp {
-  read -p "Install \"$1\"? (y/n) " -n 1 choice
-  echo 
-  case "$choice" in 
-    y|Y ) 
-      brew cask install $1
-      ;;
-    n|N )
-      # Do nothing
-      ;;
-    * ) echo "invalid option";;
-  esac
+function installCaskApp {
+  if yesNoQuestion "Install \"$1\"?"; then
+    brew cask install $1
+  fi
 }
 
 function installZipApp {
@@ -72,45 +64,36 @@ function installZipApp {
 }
 
 function installJDKEnv {
-  read -p "Install JDK environment? (y/n) " -n 1 choice
-  echo 
-  case "$choice" in 
-    y|Y ) 
-      brew cask install java
-      brew install maven
-      ;;
-    n|N )
-      # Do nothing
-      ;;
-    * ) echo "invalid option";;
-  esac
+  if yesNoQuestion "Install JDK environment?"; then
+    brew cask install java
+    brew install maven
+  fi
 }
 
 function installNodeJSEnv {
-  read -p "Install Node.js environment? (y/n) " -n 1 choice
-  echo 
-  case "$choice" in 
-    y|Y )
-      brew install node
+  if yesNoQuestion "Install Node.js environment?"; then
+    brew install node
 
-      username=$(whoami)
-      primary_group=$(id -g -n $username)
-      echo "Asking for permission to change the \"/usr/local\" owner to actual user."
-      sudo chown $username:$primary_group /usr/local
+    username=$(whoami)
+    primary_group=$(id -g -n $username)
+    echo "Asking for permission to change the \"/usr/local\" owner to actual user."
+    sudo chown $username:$primary_group /usr/local
 
-      # Use N to manage NodeJS versions: https://github.com/tj/n
-      npm install -g n
-      n latest
+    # Use N to manage NodeJS versions: https://github.com/tj/n
+    npm install -g n
+    n latest
 
-      # Install usefull packages
-      npm install -g npm-check-updates
-      npm install -g eslint-cli
-      ;;
-    n|N )
-      # Do nothing
-      ;;
-    * ) echo "invalid option";;
-  esac
+    # Install usefull packages
+    npm install -g npm-check-updates
+    npm install -g eslint-cli
+  fi
+}
+
+# This function will not allow you to install (or even purchase) an app for the first time: it must already be in the Purchased tab of the App Store.
+function installAppStoreApp {
+  if yesNoQuestion "Install \"$1\"?"; then
+    mas install $2
+  fi
 }
 
 function installApplications {
@@ -123,25 +106,28 @@ function installApplications {
   # installZipApp "BetterTouchTool" "https://www.boastr.net/releases/BetterTouchTool.zip"
   # installZipApp "SourceTree" "https://downloads.atlassian.com/software/sourcetree/SourceTree_2.4.1a.zip"
 
-  installOptionaCasklApp "visualvm"
-  installOptionaCasklApp "google-chrome"
-  installOptionaCasklApp "sourcetree"
-  installOptionaCasklApp "visual-studio-code"
-  installOptionaCasklApp "intellij-idea-ce"
-  # installOptionaCasklApp "intellij-idea"
-  installOptionaCasklApp "bettertouchtool"
-  installOptionaCasklApp "docker"
-  installOptionaCasklApp "firefox"
-  installOptionaCasklApp "opera"
-  installOptionaCasklApp "meo-music"
-  installOptionaCasklApp "meocloud"
-  installOptionaCasklApp "dropbox"
-  installOptionaCasklApp "onedrive"
-  installOptionaCasklApp "franz"
-  installOptionaCasklApp "libreoffice"
-  installOptionaCasklApp "gimp"
-  installOptionaCasklApp "spotify"
-  installOptionaCasklApp "evernote"
+  installCaskApp "visualvm"
+  installCaskApp "google-chrome"
+  installCaskApp "sourcetree"
+  installCaskApp "visual-studio-code"
+  installCaskApp "intellij-idea-ce"
+  # installCaskApp "intellij-idea"
+  installCaskApp "bettertouchtool"
+  installCaskApp "docker"
+  installCaskApp "firefox"
+  installCaskApp "opera"
+  installCaskApp "meo-music"
+  installCaskApp "meocloud"
+  installCaskApp "dropbox"
+  installCaskApp "onedrive"
+  installCaskApp "franz"
+  installCaskApp "libreoffice"
+  installCaskApp "gimp"
+  installCaskApp "spotify"
+  installCaskApp "evernote"
+
+  installAppStoreApp "LanScan" "472226235"
+  installAppStoreApp "Microsoft OneNote" "784801555"
 }
 
 function cleanUpInstallationCaches {

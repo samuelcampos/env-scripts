@@ -72,6 +72,23 @@ function setupBashProfile {
   esac  
 }
 
+function yesNoQuestion {
+  while true
+  do
+    read -p "$1 (y/n) " -n 1 choice
+    echo 
+    case "$choice" in 
+      y|Y ) 
+        return 0
+        ;;
+      n|N )
+        return 1
+        ;;
+      * ) echo "invalid option";;
+    esac
+  done
+}
+
 
 # Start script
 
