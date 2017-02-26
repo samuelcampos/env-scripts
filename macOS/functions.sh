@@ -35,7 +35,10 @@ function installHomebrew {
 function installCaskApp {
   if yesNoQuestion "Install \"$1\"?"; then
     brew cask install $1
+    return 0
   fi
+
+  return 1
 }
 
 function installZipApp {
@@ -113,10 +116,8 @@ function installApplications {
   installCaskApp "intellij-idea-ce"
   # installCaskApp "intellij-idea"
   installCaskApp "bettertouchtool"
-  installCaskApp "docker"
   installCaskApp "firefox"
   installCaskApp "opera"
-  installCaskApp "meo-music"
   installCaskApp "meocloud"
   installCaskApp "dropbox"
   installCaskApp "onedrive"
@@ -124,7 +125,17 @@ function installApplications {
   installCaskApp "libreoffice"
   installCaskApp "gimp"
   installCaskApp "spotify"
+  installCaskApp "meo-music"
   installCaskApp "evernote"
+  installCaskApp "real-vnc"
+
+  
+  if installCaskApp "docker"; then
+    # https://docs.docker.com/docker-for-mac/#/installing-bash-completion
+    ln -s /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion /usr/local/etc/bash_completion.d/docker
+    ln -s /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion /usr/local/etc/bash_completion.d/docker-machine
+    ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion /usr/local/etc/bash_completion.d/docker-compose
+  fi
 
   installAppStoreApp "LanScan" "472226235"
   installAppStoreApp "Microsoft OneNote" "784801555"

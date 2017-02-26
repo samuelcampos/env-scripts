@@ -101,8 +101,7 @@ case "$OSTYPE" in
     OS_FOLDER="macOS"    
     ;;
   linux*)
-    echo "LINUX not supported yet"
-    exit 1
+    OS_FOLDER="linux"
     ;;
   bsd*)
     echo "BSD not supported yet"
