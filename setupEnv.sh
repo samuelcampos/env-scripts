@@ -98,7 +98,8 @@ case "$OSTYPE" in
     exit 1
     ;;
   darwin*)
-    OS_FOLDER="macOS"    
+    OS_FOLDER="macOS"
+    installZSH   
     ;;
   linux*)
     OS_FOLDER="linux"
@@ -116,8 +117,6 @@ case "$OSTYPE" in
     exit 1
     ;;
 esac
-
-installZSH
 
 source ./$OS_FOLDER/functions.sh
 
