@@ -72,6 +72,22 @@ function setupBashProfile {
   esac  
 }
 
+function setupCommonRC {
+  BASH_RC_FILE="$HOME/.zshrc"
+
+  fileChanged $BASH_RC_FILE
+  case $? in
+    [1-2]*)
+      printFileChangeSignature $BASH_RC_FILE
+
+      echo "source $LOCAL_PATH/common-rc.sh" >> $BASH_RC_FILE
+      ;;
+    3*)
+      # File already changed - Update?
+      ;;
+  esac  
+}
+
 function yesNoQuestion {
   while true
   do
@@ -126,3 +142,4 @@ cleanUpInstallationCaches
 # Configure some bash files
 setupSSHConfig
 setupBashProfile
+setupCommonRC
