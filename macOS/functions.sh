@@ -128,6 +128,7 @@ function installApplications {
   installCaskApp "meo-music"
   installCaskApp "evernote"
   installCaskApp "real-vnc"
+  installCaskApp "caffeine"
 
   
   if installCaskApp "docker"; then
