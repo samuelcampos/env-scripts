@@ -9,7 +9,7 @@ LOCAL_PATH="$(pwd)"
 OS_FOLDER=""
 
 # Check if the file has already been changed by this script
-function fileChanged {
+function fileChanged () {
   if [ ! -f "$1" ]; then
     # File not found!
     return 1
@@ -26,14 +26,14 @@ function fileChanged {
 }
 
 # This method prints a change signature (in order to check if the file was changed by this script)
-function printFileChangeSignature {
+function printFileChangeSignature () {
   printf "\n\n# (%s-%s) Include default known hosts\n"\
         "$ENV_SCRIPT_NAME"\
         "$ENV_SCRIPT_VERSION"\
         >> $1
 }
 
-function setupSSHConfig {
+function setupSSHConfig () {
   SSH_CONFIG_FILE="$HOME/.ssh/config"
 
   fileChanged $SSH_CONFIG_FILE
@@ -52,11 +52,11 @@ function setupSSHConfig {
   esac
 }
 
-function installZSH {
+function installZSH () {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
-function setupBashProfile {
+function setupBashProfile () {
   BASH_PROFILE_FILE="$HOME/.bash_profile"
 
   fileChanged $BASH_PROFILE_FILE
@@ -72,7 +72,7 @@ function setupBashProfile {
   esac  
 }
 
-function setupCommonRC {
+function setupBashRC () {
   BASH_RC_FILE="$HOME/.zshrc"
 
   fileChanged $BASH_RC_FILE
@@ -80,7 +80,17 @@ function setupCommonRC {
     [1-2]*)
       printFileChangeSignature $BASH_RC_FILE
 
-      echo "source $LOCAL_PATH/common-rc.sh" >> $BASH_RC_FILE
+      echo "source $LOCAL_PATH/rc-files/common.sh" >> $BASH_RC_FILE
+
+      # If java is installed
+      if which java > /dev/null; then
+        echo "source $LOCAL_PATH/rc-files/java.sh" >> $BASH_RC_FILE
+      fi
+
+      # If docker is installed
+      if which docker > /dev/null; then
+        echo "source $LOCAL_PATH/rc-files/docker.sh" >> $BASH_RC_FILE
+      fi
       ;;
     3*)
       # File already changed - Update?
@@ -88,7 +98,7 @@ function setupCommonRC {
   esac  
 }
 
-function yesNoQuestion {
+function yesNoQuestion () {
   while true
   do
     read -p "$1 (y/n) " -n 1 choice
@@ -142,4 +152,4 @@ cleanUpInstallationCaches
 # Configure some bash files
 setupSSHConfig
 setupBashProfile
-setupCommonRC
+setupBashRC

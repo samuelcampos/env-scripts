@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function checkIfAppInstalled {
+function checkIfAppInstalled () {
   files=$(ls /Applications | grep "$1.app")
   if [[ $files ]]; then
       return 2
@@ -9,7 +9,7 @@ function checkIfAppInstalled {
   fi
 }
 
-function installHomebrew {
+function installHomebrew () {
   # Check if Homebrew is already installed
   brew -v > /dev/null 2>&1
   returnValue=$?
@@ -32,7 +32,7 @@ function installHomebrew {
   brew install mas
 }
 
-function installCaskApp {
+function installCaskApp () {
   if yesNoQuestion "Install \"$1\"?"; then
     brew cask install $1
     return 0
@@ -41,7 +41,7 @@ function installCaskApp {
   return 1
 }
 
-function installZipApp {
+function installZipApp () {
   APP_NAME=$1
   ZIP_URL=$2
   checkIfAppInstalled $APP_NAME
@@ -66,14 +66,14 @@ function installZipApp {
   esac
 }
 
-function installJDKEnv {
+function installJDKEnv () {
   if yesNoQuestion "Install JDK environment?"; then
     brew cask install java
     brew install maven
   fi
 }
 
-function installNodeJSEnv {
+function installNodeJSEnv () {
   if yesNoQuestion "Install Node.js environment?"; then
     brew install node
 
@@ -93,13 +93,13 @@ function installNodeJSEnv {
 }
 
 # This function will not allow you to install (or even purchase) an app for the first time: it must already be in the Purchased tab of the App Store.
-function installAppStoreApp {
+function installAppStoreApp () {
   if yesNoQuestion "Install \"$1\"?"; then
     mas install $2
   fi
 }
 
-function installApplications {
+function installApplications () {
   # Install applications and utils
   installHomebrew
 
@@ -142,6 +142,6 @@ function installApplications {
   installAppStoreApp "Microsoft OneNote" "784801555"
 }
 
-function cleanUpInstallationCaches {
+function cleanUpInstallationCaches () {
   brew cleanup --force -s && rm -rf $(brew --cache)
 }
