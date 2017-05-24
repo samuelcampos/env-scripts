@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARCH=$(/usr/libexec/java_home)
+ARCH=$(arch)
 
 if [[ $OSTYPE != linux* ]] || [[ $ARCH != arm* ]]; then
     echo "This is not a Linux with ARM architecture!"
