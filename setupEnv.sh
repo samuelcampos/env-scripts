@@ -3,8 +3,6 @@
 ENV_SCRIPT_NAME="env-scripts"
 ENV_SCRIPT_VERSION="0.0.1"
 
-TEMP_FOLDER="$HOME/Downloads/"
-
 LOCAL_PATH="$(pwd)"
 OS_FOLDER=""
 

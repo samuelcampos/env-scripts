@@ -1,4 +1,5 @@
 
+
 function yesNoQuestion () {
   QUESTION=$1;
 
@@ -27,3 +28,10 @@ function gitPR () {
         git reset --hard $1
     fi
 }
+
+
+# Aliases
+
+if [[ $OSTYPE == linux* ]]; then
+    alias ll="ls -lh"
+fi

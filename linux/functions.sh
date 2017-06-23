@@ -36,6 +36,7 @@ function installApplications () {
     installAPTApp "kodi"
     installAPTApp "realvnc-vnc-server"
     installAPTApp "libreoffice"
+    installAPTApp "maven"
 
     installNodeJSEnv
   else
