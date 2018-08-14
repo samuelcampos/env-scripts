@@ -88,7 +88,7 @@ function installNodeJSEnv () {
 
     # Install usefull packages
     npm install -g npm-check-updates
-    npm install -g eslint-cli
+    # npm install -g eslint-cli
   fi
 }
 
@@ -125,7 +125,6 @@ function installApplications () {
   installCaskApp "libreoffice"
   installCaskApp "gimp"
   installCaskApp "spotify"
-  installCaskApp "meo-music"
   installCaskApp "evernote"
   installCaskApp "real-vnc"
   installCaskApp "caffeine"
