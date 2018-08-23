@@ -22,7 +22,8 @@ function d_tail-f () {
 
 function d_ip () 
 { 
-    docker inspect -f '{{ .NetworkSettings.IPAddress }}' $1
+    #docker inspect -f '{{ .NetworkSettings.IPAddress }}' $1
+    docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1
 }
 
 function d_cp () {
