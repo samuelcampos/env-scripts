@@ -29,21 +29,3 @@ function d_ip ()
 function d_cp () {
     docker cp $1:$2 $3
 }
-
-# Docker machine helpers
-
-# Prepare to use Docker Machine
-function d_machine ()
-{
-    export DOCKER_API_VERSION=1.22
-    eval $(docker-machine env)
-
-    # Check if the route for the Docker Machine already exists
-    dockerMachineRoute=$(netstat -nr | grep 172.17 | wc -l)
-    if [ "$dockerMachineRoute" -eq "0" ]; then
-        sudo route -n add 172.17.0.0/16 $(docker-machine ip)
-    fi
-
-    # docker-machine ssh default
-}
-alias d_machine_in="docker-machine ssh default"
