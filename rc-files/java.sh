@@ -1,10 +1,10 @@
 # Export environment variables
-export JAVA_HOME=$(/usr/libexec/java_home)
+#export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Maven aliases & tweeks
 # - https://zeroturnaround.com/rebellabs/your-maven-build-is-slow-speed-it-up/
 # - http://blog.dblazejewski.com/2015/08/how-to-make-your-maven-build-fast-again/
-export MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+#export MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 
 # -DskipTests=true          : Don't run the unit tests
 # -Dmaven.test.skip=true    : Don't compile nor run the unit tests
@@ -14,3 +14,10 @@ alias mcict="mvn -T 1C clean install -DskipTests=true"                          
 alias mist="mvn -T 1C install -DskipTests=true -Dmaven.test.skip=true"              # maven install skip test execution and compilation
 alias mfi="mist -nsu"                                                               # maven install skip tests
 alias mcfi="mvn -T 1C clean install -DskipTests=true -Dmaven.test.skip=true -nsu"   # maven clean install skip tests
+
+
+function enableGraalVm () {
+    export GRAALVM_HOME="~/graalvm-ce-java17-22.3.0/Contents/Home"
+    export PATH="~/graalvm-ce-java17-22.3.0/Contents/Home/bin:$PATH"
+    export JAVA_HOME="~/graalvm-ce-java17-22.3.0/Contents/Home"
+}

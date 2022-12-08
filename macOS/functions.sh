@@ -128,14 +128,7 @@ function installApplications () {
   installCaskApp "evernote"
   installCaskApp "real-vnc"
   installCaskApp "caffeine"
-
-  
-  if installCaskApp "docker"; then
-    # https://docs.docker.com/docker-for-mac/#/installing-bash-completion
-    ln -s /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion /usr/local/etc/bash_completion.d/docker
-    ln -s /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion /usr/local/etc/bash_completion.d/docker-machine
-    ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion /usr/local/etc/bash_completion.d/docker-compose
-  fi
+  installCaskApp "docker"
 
   installAppStoreApp "LanScan" "472226235"
   installAppStoreApp "Microsoft OneNote" "784801555"
