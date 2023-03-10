@@ -21,16 +21,8 @@ function yesNoQuestion () {
 }
 
 
-# GIT Helpers
-
-function gitPR () {
-    if yesNoQuestion "Pull a rebased branch ($1), discarding ALL local changes?"; then
-        git reset --hard $1
-    fi
-}
-
-
 # Aliases
+alias gitsos="git commit -am 'Emergency' && git push"
 
 if [[ $OSTYPE == linux* ]]; then
     alias ll="ls -lh"
