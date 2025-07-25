@@ -16,8 +16,8 @@ alias mfi="mist -nsu"                                                           
 alias mcfi="mvn -T 1C clean install -DskipTests=true -Dmaven.test.skip=true -nsu"   # maven clean install skip tests
 
 
-function enableGraalVm () {
-    export GRAALVM_HOME="~/graalvm-ce-java17-22.3.0/Contents/Home"
-    export PATH="~/graalvm-ce-java17-22.3.0/Contents/Home/bin:$PATH"
-    export JAVA_HOME="~/graalvm-ce-java17-22.3.0/Contents/Home"
-}
+#function enableGraalVm () {
+#    export GRAALVM_HOME="~/graalvm-ce-java17-22.3.0/Contents/Home"
+#    export PATH="~/graalvm-ce-java17-22.3.0/Contents/Home/bin:$PATH"
+#    export JAVA_HOME="~/graalvm-ce-java17-22.3.0/Contents/Home"
+#}

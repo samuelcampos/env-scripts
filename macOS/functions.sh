@@ -103,6 +103,8 @@ function installApplications () {
   # Install applications and utils
   installHomebrew
 
+  brew install tmux
+
   installJDKEnv
   installNodeJSEnv
 
@@ -111,7 +113,7 @@ function installApplications () {
 
   installCaskApp "visualvm"
   installCaskApp "google-chrome"
-  installCaskApp "sourcetree"
+  #installCaskApp "sourcetree"
   installCaskApp "visual-studio-code"
   installCaskApp "intellij-idea-ce"
   # installCaskApp "intellij-idea"
@@ -121,12 +123,10 @@ function installApplications () {
   installCaskApp "meocloud"
   installCaskApp "dropbox"
   installCaskApp "onedrive"
-  installCaskApp "franz"
   installCaskApp "libreoffice"
   installCaskApp "gimp"
   installCaskApp "spotify"
-  installCaskApp "evernote"
-  installCaskApp "real-vnc"
+  #installCaskApp "real-vnc"
   installCaskApp "caffeine"
   installCaskApp "docker"
 
