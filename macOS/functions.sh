@@ -82,9 +82,8 @@ function installNodeJSEnv () {
     echo "Asking for permission to change the \"/usr/local\" owner to actual user."
     sudo chown $username:$primary_group /usr/local
 
-    # Use N to manage NodeJS versions: https://github.com/tj/n
-    npm install -g n
-    n latest
+    # Use NVM to manage NodeJS versions
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
     # Install usefull packages
     npm install -g npm-check-updates
@@ -103,7 +102,8 @@ function installApplications () {
   # Install applications and utils
   installHomebrew
 
-  brew install tmux
+  #brew install tmux
+  brew install sshpass
 
   installJDKEnv
   installNodeJSEnv
@@ -115,11 +115,9 @@ function installApplications () {
   installCaskApp "google-chrome"
   #installCaskApp "sourcetree"
   installCaskApp "visual-studio-code"
-  installCaskApp "intellij-idea-ce"
-  # installCaskApp "intellij-idea"
-  installCaskApp "bettertouchtool"
+  #installCaskApp "intellij-idea-ce"
+  installCaskApp "intellij-idea"
   installCaskApp "firefox"
-  installCaskApp "opera"
   installCaskApp "meocloud"
   installCaskApp "dropbox"
   installCaskApp "onedrive"

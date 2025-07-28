@@ -20,10 +20,6 @@ function yesNoQuestion () {
   done
 }
 
-
-# Aliases
-alias gitsos="git commit -am 'Emergency' && git push"
-
 if [[ $OSTYPE == linux* ]]; then
     alias ll="ls -lh"
 fi
