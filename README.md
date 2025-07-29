@@ -15,8 +15,12 @@ chmod 755 setupEnv.sh
 ./setupEnv.sh
 ```
 
+## Install other apps
 
-### Install JDK
-
-Go to: https://adoptium.net/temurin/releases/ 
+- JDK: https://adoptium.net/temurin/releases/ 
+- Offset Explorer: https://offsetexplorer.com/index.html
+- Keystore explorer: https://keystore-explorer.org/
+- Okta Verify: 
+- Tailscale: tailscale.com/download
+- Miro: 
 

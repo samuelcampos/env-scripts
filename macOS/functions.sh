@@ -104,6 +104,7 @@ function installApplications () {
 
   #brew install tmux
   brew install sshpass
+  brew install --cask raycast
 
   installJDKEnv
   installNodeJSEnv
