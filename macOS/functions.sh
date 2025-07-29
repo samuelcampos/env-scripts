@@ -26,6 +26,15 @@ function installHomebrew () {
   brew install bash-completion
 }
 
+function installBrewApp () {
+  if yesNoQuestion "Install \"$1\"?"; then
+    brew install $1
+    return 0
+  fi
+
+  return 1
+}
+
 function installCaskApp () {
   if yesNoQuestion "Install \"$1\"?"; then
     brew install --cask $1
@@ -33,31 +42,6 @@ function installCaskApp () {
   fi
 
   return 1
-}
-
-function installZipApp () {
-  APP_NAME=$1
-  ZIP_URL=$2
-  checkIfAppInstalled $APP_NAME
-
-  returnValue=$?
-  case $returnValue in
-    1*)
-      curl -fsSL -o $TEMP_FOLDER$APP_NAME.zip $ZIP_URL
-      unzip -d $TEMP_FOLDER $TEMP_FOLDER$APP_NAME.zip > /dev/null
-      mv $TEMP_FOLDER$APP_NAME.app /Applications/$APP_NAME.app
-
-      # Remove temp files
-      rm -r $TEMP_FOLDER"__MACOSX" 2> /dev/null
-      rm $TEMP_FOLDER$APP_NAME.zip
-
-      # Open the App
-      open -a $APP_NAME 
-      ;;
-    2*)
-      echo "$APP_NAME is already installed!"
-      ;;
-  esac
 }
 
 function installJDKEnv () {
@@ -96,8 +80,6 @@ function installApplications () {
   # Install applications and utils
   installHomebrew
 
-  brew install sshpass
-
   installJDKEnv
   installNodeJSEnv
 
@@ -118,6 +100,10 @@ function installApplications () {
   installCaskApp "raycast"
   installCaskApp "tailscale"
   installCaskApp "miro"
+
+  installBrewApp sshpass
+  installBrewApp awscli
+  installBrewApp derailed/k9s/k9s
 
   # Apple App Store apps
   # "mas" is the command to install apps from AppStore
