@@ -96,7 +96,6 @@ function installApplications () {
   # Install applications and utils
   installHomebrew
 
-  #brew install tmux
   brew install sshpass
 
   installJDKEnv
@@ -118,10 +117,14 @@ function installApplications () {
   installCaskApp "docker"
   installCaskApp "raycast"
 
+  # Apple App Store apps
+  # "mas" is the command to install apps from AppStore
+  brew install mas
+
   installAppStoreApp "LanScan" "472226235"
   installAppStoreApp "Microsoft OneNote" "784801555"
 }
 
 function cleanUpInstallationCaches () {
-  brew cleanup --force -s && rm -rf $(brew --cache)
+  brew cleanup -s && rm -rf $(brew --cache)
 }
