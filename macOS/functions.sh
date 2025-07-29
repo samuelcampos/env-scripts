@@ -24,12 +24,6 @@ function installHomebrew () {
 
   # Install Homebrew basic applications
   brew install bash-completion
-
-  # Adds cask repo to the list of formulae
-  #brew tap caskroom/cask
-
-  #brew install cask
-  #brew install mas
 }
 
 function installCaskApp () {
@@ -108,14 +102,10 @@ function installApplications () {
   installJDKEnv
   installNodeJSEnv
 
-  # installZipApp "BetterTouchTool" "https://www.boastr.net/releases/BetterTouchTool.zip"
-  # installZipApp "SourceTree" "https://downloads.atlassian.com/software/sourcetree/SourceTree_2.4.1a.zip"
-
   installCaskApp "visualvm"
   installCaskApp "google-chrome"
-  #installCaskApp "sourcetree"
   installCaskApp "visual-studio-code"
-  #installCaskApp "intellij-idea-ce"
+  installCaskApp "intellij-idea-ce"
   installCaskApp "intellij-idea"
   installCaskApp "firefox"
   installCaskApp "meocloud"
@@ -124,7 +114,6 @@ function installApplications () {
   installCaskApp "libreoffice"
   installCaskApp "gimp"
   installCaskApp "spotify"
-  #installCaskApp "real-vnc"
   installCaskApp "caffeine"
   installCaskApp "docker"
   installCaskApp "raycast"
