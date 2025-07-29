@@ -34,7 +34,7 @@ function installHomebrew () {
 
 function installCaskApp () {
   if yesNoQuestion "Install \"$1\"?"; then
-    brew cask install $1
+    brew install --cask $1
     return 0
   fi
 
@@ -104,7 +104,6 @@ function installApplications () {
 
   #brew install tmux
   brew install sshpass
-  brew install --cask raycast
 
   installJDKEnv
   installNodeJSEnv
@@ -128,6 +127,8 @@ function installApplications () {
   #installCaskApp "real-vnc"
   installCaskApp "caffeine"
   installCaskApp "docker"
+  installCaskApp "raycast"
+  installCaskApp "temurin@21"
 
   installAppStoreApp "LanScan" "472226235"
   installAppStoreApp "Microsoft OneNote" "784801555"
