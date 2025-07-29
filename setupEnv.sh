@@ -94,6 +94,8 @@ function setupBashRC () {
       # File already changed - Update?
       ;;
   esac  
+
+  source $BASH_RC_FILE
 }
 
 # Start script
