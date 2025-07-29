@@ -16,7 +16,7 @@ function installHomebrew () {
   if [[ "$returnValue" -ne "0" ]]
   then
       echo "Installing Homebrew..."
-      ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   else
       echo "Homebrew is already installed!"
       brew update && brew doctor && brew upgrade
@@ -26,10 +26,10 @@ function installHomebrew () {
   brew install bash-completion
 
   # Adds cask repo to the list of formulae
-  brew tap caskroom/cask
+  #brew tap caskroom/cask
 
-  brew install cask
-  brew install mas
+  #brew install cask
+  #brew install mas
 }
 
 function installCaskApp () {
@@ -68,8 +68,8 @@ function installZipApp () {
 
 function installJDKEnv () {
   if yesNoQuestion "Install JDK environment?"; then
-    brew cask install java
-    brew install maven
+    brew install --cask "temurin@21"
+    
   fi
 }
 
@@ -128,7 +128,6 @@ function installApplications () {
   installCaskApp "caffeine"
   installCaskApp "docker"
   installCaskApp "raycast"
-  installCaskApp "temurin@21"
 
   installAppStoreApp "LanScan" "472226235"
   installAppStoreApp "Microsoft OneNote" "784801555"
