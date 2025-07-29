@@ -116,6 +116,8 @@ function installApplications () {
   installCaskApp "caffeine"
   installCaskApp "docker"
   installCaskApp "raycast"
+  installCaskApp "tailscale"
+  installCaskApp "miro"
 
   # Apple App Store apps
   # "mas" is the command to install apps from AppStore
