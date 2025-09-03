@@ -99,6 +99,7 @@ function installApplications () {
   installCaskApp "docker"
   installCaskApp "raycast"
   installCaskApp "tailscale"
+  installCaskApp "postman"
   installCaskApp "miro"
 
   installBrewApp sshpass
